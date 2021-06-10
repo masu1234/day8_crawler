@@ -1,36 +1,26 @@
 defmodule SimpleCrawler2 do
   def main() do
     top_url = ["https://thewaggletraining.github.io/"]
-    url_list1 =
-      top_url
-        |> searchLinksFromURLLists()
-        |> properList()
-    url_list2 =
-      url_list1
-        |> searchLinksFromURLLists()
-        |> properList()
-    url_list3 =
-      url_list2
-        |> searchLinksFromURLLists()
-        |> properList()
-    url_list4 =
-      url_list3
-        |> searchLinksFromURLLists()
-        |> properList()
-    url_list =
-      [top_url, url_list1, url_list2, url_list3, url_list4]
-        |> List.flatten()
-        |> Enum.uniq()
+    url_list = loop(top_url)
     text_list =
       for url <- url_list do
         getText(url)
       end
-    IO.inspect(url_list)
-    IO.inspect(text_list)
+    domain = "thewaggletraining.github.io/"
+
+    Enum.map(url_list, fn x ->
+
+    end)
+
   end
 
   def loop(list) do
-    all_list = Enum.uniq(list ++ List.flatten(searchLinksFromURLLists(list)))
+    all_list =
+    list
+    |> searchLinksFromURLLists()
+    |> properList()
+    |> List.flatten(list)
+    |> Enum.uniq()
     if all_list == list do
       all_list
     else
@@ -67,13 +57,4 @@ defmodule SimpleCrawler2 do
     |> Floki.find("html")
     |> Floki.text()
   end
-
-  def sample(n) do
-    if n == 0 do
-      n
-    else
-      sample(n-1)
-    end
-  end
-
 end
