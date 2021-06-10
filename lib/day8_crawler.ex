@@ -4,8 +4,8 @@ defmodule Day8Crawler do
     ["https://thewaggletraining.github.io/"]
     |> SimpleCrawler2.main()
     |> insertData()
-    |> IO.inspect()
-    |> (&List.flatten(["uri", "domain", "body"], &1)).()
+    |> List.insert_at(0, ["uri", "domain", "body"])
+    # |> (&List.flatten(["uri", "domain", "body"], &1)).()
     |> IO.inspect()
     |> CSV.encode()
     |> Enum.take(5)
