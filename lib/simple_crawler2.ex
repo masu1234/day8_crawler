@@ -1,15 +1,14 @@
 defmodule SimpleCrawler2 do
-  def main() do
-    top_url = ["https://thewaggletraining.github.io/"]
+  def main(top_url) do
     url_list = loop(top_url)
-    text_list =
-      for url <- url_list do
-        getText(url)
-      end
+    # text_list =
+    #   for url <- url_list do
+    #     getText(url)
+    #   end
     domain = "thewaggletraining.github.io/"
 
     Enum.map(url_list, fn x ->
-
+      %{uri: x, domain: domain, body: getText(x)}
     end)
 
   end
