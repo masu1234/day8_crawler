@@ -6,7 +6,7 @@ defmodule Day8Crawler.Repo.Migrations.CreatePageInfo do
       add :domain, :string
       add :uri, :string
       add :body, :string
-     end
+    end
 
   end
 end
